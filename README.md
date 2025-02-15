@@ -166,7 +166,7 @@ Interactive API documentation is also available once the server is running:
 ## Demo 🎥
 
 Watch the demo video below to see AI Collab Code Editor in action:
-[Download Demo Video](docs/Demo.mov)
+[Download Demo Video](docs/Demo.mp4)
 
 ---
 
