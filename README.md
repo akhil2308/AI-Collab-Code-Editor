@@ -7,6 +7,7 @@ A production-grade code collaboration platform built with FastAPI that integrate
 ## Project Structure 🌳
 
 <!-- TREE_START -->
+```
 .
 ├── app
 │   ├── code_editor
@@ -52,6 +53,7 @@ A production-grade code collaboration platform built with FastAPI that integrate
 ├── requirements.txt
 ├── run.sh
 └── set_env.sh
+```
 <!-- TREE_END -->
 
 ---
