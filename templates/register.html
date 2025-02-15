@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - AI-Collab-Code-Editor</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Font: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #FFFFFF; /* Light theme background */
+      color: #000000; /* Black text */
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .card {
+      background-color: #FFFFFF; /* White card background */
+      border: 1px solid #E5E7EB; /* Light gray border */
+      border-radius: 10px;
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+    .form-control {
+      background-color: #F9FAFB; /* Light input background */
+      color: #000000; /* Black text */
+      border: 1px solid #E5E7EB; /* Light gray border */
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .form-control:focus {
+      border-color: #2563EB; /* Blue border on focus */
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); /* Blue glow */
+    }
+    .btn-primary {
+      background-color: #2563EB; /* Primary blue */
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-weight: 500;
+    }
+    .btn-primary:hover {
+      background-color: #1D4ED8; /* Darker blue on hover */
+    }
+    .btn-secondary {
+      background-color: #6B7280; /* Secondary gray */
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-weight: 500;
+    }
+    .btn-secondary:hover {
+      background-color: #4B5563; /* Darker gray on hover */
+    }
+    .error-message {
+      color: #DC2626; /* Red for errors */
+      margin-top: 10px;
+      text-align: center;
+    }
+    h2 {
+      color: #2563EB; /* Blue heading */
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 class="text-center">Sign Up</h2>
+    <form id="registerForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <a href="login" class="btn btn-secondary">Login</a>
+      </div>
+      <div id="errorMessage" class="error-message mt-3"></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('http://0.0.0.0:8000/v1/api/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        if (response.ok) {
+          // Redirect to login page
+          window.location.href = 'login';
+        } else {
+          const errorData = await response.json();
+          document.getElementById('errorMessage').textContent = errorData.detail || 'Registration failed. Please try again.';
+        }
+      } catch (error) {
+        document.getElementById('errorMessage').textContent = 'An error occurred. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>

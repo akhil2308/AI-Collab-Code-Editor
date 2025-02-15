@@ -1,0 +1,1032 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AI-Collab-Code-Editor",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/api/health/": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Status Check",
+        "operationId": "status_check_v1_api_health__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/user/register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Register",
+        "operationId": "register_v1_api_user_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login",
+        "operationId": "login_v1_api_user_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/user/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get All Users Router",
+        "operationId": "get_all_users_router_v1_api_user__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/UserListResponse"
+                  },
+                  "type": "array",
+                  "title": "Response Get All Users Router V1 Api User  Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/api/code-sessions/": {
+      "post": {
+        "tags": [
+          "Code Sessions"
+        ],
+        "summary": "Create Code Session Router",
+        "operationId": "create_code_session_router_v1_api_code_sessions__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeSessionCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CodeSessionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/api/code-sessions/{code_session_id}": {
+      "put": {
+        "tags": [
+          "Code Sessions"
+        ],
+        "summary": "Update Code Session Router",
+        "operationId": "update_code_session_router_v1_api_code_sessions__code_session_id__put",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "code_session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeSessionUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CodeSessionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/code-sessions/invite": {
+      "post": {
+        "tags": [
+          "Code Sessions"
+        ],
+        "summary": "Invite User To Session Router",
+        "operationId": "invite_user_to_session_router_v1_api_code_sessions_invite_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeSessionUserAccessInviteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CodeSessionUserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/api/code-sessions/change-access": {
+      "put": {
+        "tags": [
+          "Code Sessions"
+        ],
+        "summary": "Change User Access Router",
+        "operationId": "change_user_access_router_v1_api_code_sessions_change_access_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeSessionUserAccessChangeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CodeSessionUserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/api/code-sessions/code-sessions": {
+      "get": {
+        "tags": [
+          "Code Sessions"
+        ],
+        "summary": "List Code Sessions Router",
+        "operationId": "list_code_sessions_router_v1_api_code_sessions_code_sessions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CodeSessionWithRoleResponse"
+                  },
+                  "type": "array",
+                  "title": "Response List Code Sessions Router V1 Api Code Sessions Code Sessions Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/api/code-editor/ai/code-debugger": {
+      "post": {
+        "tags": [
+          "Code Editor"
+        ],
+        "summary": "Debugger Endpoint",
+        "operationId": "debugger_endpoint_v1_api_code_editor_ai_code_debugger_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DebuggerRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/v1/api/code-editor/ai/code-generator": {
+      "post": {
+        "tags": [
+          "Code Editor"
+        ],
+        "summary": "Code Generator Endpoint",
+        "operationId": "code_generator_endpoint_v1_api_code_editor_ai_code_generator_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeGeneratorRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              
+            ]
+          }
+        ]
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": [
+          "UI"
+        ],
+        "summary": "Login Page",
+        "operationId": "login_page_login_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "get": {
+        "tags": [
+          "UI"
+        ],
+        "summary": "Register Page",
+        "operationId": "register_page_register_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "tags": [
+          "UI"
+        ],
+        "summary": "Dashboard Page",
+        "operationId": "dashboard_page_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/code-editor": {
+      "get": {
+        "tags": [
+          "UI"
+        ],
+        "summary": "Code Editor Page",
+        "operationId": "code_editor_page_code_editor_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CodeGeneratorRequest": {
+        "properties": {
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "code_session_id"
+        ],
+        "title": "CodeGeneratorRequest"
+      },
+      "CodeSessionCreateRequest": {
+        "properties": {
+          "code_session_name": {
+            "type": "string",
+            "title": "Code Session Name"
+          },
+          "content_type": {
+            "type": "string",
+            "enum": [
+              "python",
+              "javascript"
+            ],
+            "title": "Content Type"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content"
+          },
+          "created_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code_session_name",
+          "content_type"
+        ],
+        "title": "CodeSessionCreateRequest"
+      },
+      "CodeSessionResponse": {
+        "properties": {
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          },
+          "code_session_name": {
+            "type": "string",
+            "title": "Code Session Name"
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Content Type"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content"
+          },
+          "created_by": {
+            "type": "string",
+            "title": "Created By"
+          },
+          "updated_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code_session_id",
+          "code_session_name",
+          "content_type",
+          "created_by"
+        ],
+        "title": "CodeSessionResponse"
+      },
+      "CodeSessionUpdateRequest": {
+        "properties": {
+          "code_session_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code Session Name"
+          },
+          "content_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "python",
+                  "javascript"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Type"
+          },
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content"
+          },
+          "updated_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated By"
+          }
+        },
+        "type": "object",
+        "title": "CodeSessionUpdateRequest"
+      },
+      "CodeSessionUserAccessChangeRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          },
+          "new_role": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "editor",
+              "viewer"
+            ],
+            "title": "New Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "code_session_id",
+          "new_role"
+        ],
+        "title": "CodeSessionUserAccessChangeRequest"
+      },
+      "CodeSessionUserAccessInviteRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "editor",
+              "viewer"
+            ],
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "code_session_id",
+          "role"
+        ],
+        "title": "CodeSessionUserAccessInviteRequest"
+      },
+      "CodeSessionUserAccessResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "user_id",
+          "code_session_id",
+          "role"
+        ],
+        "title": "CodeSessionUserAccessResponse"
+      },
+      "CodeSessionWithRoleResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          },
+          "code_session_name": {
+            "type": "string",
+            "title": "Code Session Name"
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Content Type"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "created_by": {
+            "type": "string",
+            "title": "Created By"
+          },
+          "updated_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated By"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "code_session_id",
+          "code_session_name",
+          "content_type",
+          "role",
+          "created_by"
+        ],
+        "title": "CodeSessionWithRoleResponse"
+      },
+      "DebuggerRequest": {
+        "properties": {
+          "code_session_id": {
+            "type": "string",
+            "title": "Code Session Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code_session_id"
+        ],
+        "title": "DebuggerRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "UserCreateRequest": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "email",
+          "password"
+        ],
+        "title": "UserCreateRequest"
+      },
+      "UserCreateResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "username",
+          "email",
+          "created_at"
+        ],
+        "title": "UserCreateResponse"
+      },
+      "UserListResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "email"
+        ],
+        "title": "UserListResponse"
+      },
+      "UserLoginRequest": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "UserLoginRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {
+              
+            },
+            "tokenUrl": "/login"
+          }
+        }
+      }
+    }
+  }
+}
