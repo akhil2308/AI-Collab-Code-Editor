@@ -166,11 +166,7 @@ Interactive API documentation is also available once the server is running:
 ## Demo 🎥
 
 Watch the demo video below to see AI Collab Code Editor in action:
-![](docs/Demo.mov)
-<video width="640" height="360" controls>
-  <source src="docs/Demo.mov" type="video/quicktime">
-  Your browser does not support the video tag.
-</video>
+[Download Demo Video](docs/Demo.mov)
 
 ---
 
